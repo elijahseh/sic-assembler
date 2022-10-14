@@ -1,11 +1,17 @@
-Hogen1:	Hogen1.o SymbolTable.o
-	g++ Hogen1.o SymbolTable.o -o Hogen1
+Hogen2: Hogen2.o SymbolTable.o ExpressionHandler.o LiteralTable.o
+	g++  Hogen2.o SymbolTable.o ExpressionHandler.o LiteralTable.o -o Hogen2
 
-Hogen1.o: Hogen1.cpp
-	g++ -c Hogen1.cpp
+Hogen2.o: Hogen2.cpp
+	g++ -c Hogen2.cpp
 
 SymbolTable.o: SymbolTable.cpp
 	g++ -c SymbolTable.cpp
 
+ExpressionHandler.o: ExpressionHandler.cpp
+	g++ -c ExpressionHandler.cpp
+
+LiteralTable.o: LiteralTable.cpp
+	g++ -c LiteralTable.cpp
+
 clean:
-	rm *.o Hogen1
+	rm *.o Hogen2

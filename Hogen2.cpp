@@ -1,15 +1,3 @@
-/********************************************************************
-*** NAME : ELijah Hogen
-*** CLASS : CSc 354
-*** ASSIGNMENT : Assignment 1
-*** DUE DATE : 9/21/22
-*** INSTRUCTOR : GAMRADT
-*********************************************************************
-*** DESCRIPTION : Program to populate a Symbol Table structured by a 
-binary search tree given a symbol, value, and RFlag from file SYMBOLS.DAT
-The program can search for matching symbols provided in a seach file via CL
-********************************************************************/
-
 #define _CRT_SECURE_NO_DEPRECATE
 #include "SymbolTable.h"
 #include <iostream>
@@ -68,9 +56,9 @@ int main(int argc, char* argv[])
                 cout << "LOG: SYMBOLS.DAT opened." << endl;
 
                 rewind(testPtr);
-                cout << "LOG: TEST.DAT opened." << endl;
+                cout << "LOG: " << argv[1] << " opened." << endl;
 
-                //symbol table function()
+                //symbol table enrty
                 SymTable(filePtr, testPtr);
             }
         }

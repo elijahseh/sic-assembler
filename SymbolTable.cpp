@@ -1,17 +1,19 @@
-//cpp file for SymbolTable
+//cpp file for SymTable
 
-#include "SymbolTable.h"
 #include <iostream>
 #include <string>
+#include "SymbolTable.h"
+#include "ExpressionHandler.h"
 
 using namespace std;
 
-FILE* sourceFile; // Global File pointer for use in grabbing characters in SYMBOLS.DAT and searchfiles
+FILE* sourceFile;
 char ch;
-char lookahead; // 1 position ahead of selected char
+char lookahead;
 int linenum;
 node* root = nullptr;
-Symbol entry; // Object to store symbols + their attributes
+Symbol entry;
+bool search = false;
 
 void GetCh() // Main character grabbing fucntion for SYMBOLS.DAT
 {
@@ -27,7 +29,7 @@ void skip() // Skips possible whitespace
 	}
 }
 
-void parenthPrint(node* root) // Visual aid for BST
+void parenthPrint(node* root)
 {
 	if (root != nullptr)
 	{
@@ -41,15 +43,6 @@ void parenthPrint(node* root) // Visual aid for BST
 		}
 	}
 }
-
-
-/********************************************************************
-*** FUNCTION insertBST
-*********************************************************************
-*** DESCRIPTION : Insert symbols into BST, ignores multiply defined symbols
-*** INPUT ARGS : Symbol object populated from SYMBOLS.DAT, BST root node
-
-********************************************************************/
 
 void insertBST(node*& root, Symbol d)
 {
@@ -72,14 +65,6 @@ void insertBST(node*& root, Symbol d)
 	}
 }
 
-/********************************************************************
-*** FUNCTION inOrder
-*********************************************************************
-*** DESCRIPTION : Prints an alphebetic ordered traversal of the BST in table format
-*** INPUT ARGS : BST root node
-
-********************************************************************/
-
 void inOrder(node* root)
 {
 	if (root != nullptr)
@@ -96,14 +81,6 @@ void inOrder(node* root)
 	}
 }
 
-/********************************************************************
-*** FUNCTION traverse
-*********************************************************************
-*** DESCRIPTION : search function for BST, prints info on multiply defines symbols and raises MFLAGs
-*** INPUT ARGS : symbol to search tree for (key), BST root node
-
-********************************************************************/
-
 
 bool mflag = false;
 
@@ -116,8 +93,10 @@ bool traverse(node* root, string key)
 
 		if (root->data.symbolStr == key)
 		{
+
 			root->data.mflag = true;
 			mflag = true;
+
 			cerr << key << "\t Exists in table." << endl;
 		}
 
@@ -135,20 +114,19 @@ bool traverse(node* root, string key)
 
 bool testMatch = false;
 
-
-
-void mFlagSet() // plugs in a symbol from the object into the traversal function to find previous definiton, moves onto rflag if not a duplicate
+void mFlagSet()
 {
 	string key = entry.symbolStr;
 
 	if (!traverse(root, key))
 	{
-		rFlagSet();
+		if(!search)
+			rFlagSet();
 
 	}
 }
 
-void rFlagSet() // checks for valid RFlags, moves onto determining symbol value if Rflag is valid
+void rFlagSet()
 {
 	string flagCheck;
 	bool invalid = false;
@@ -179,16 +157,10 @@ void rFlagSet() // checks for valid RFlags, moves onto determining symbol value 
 	else
 	{
 		cerr << "ERROR: Invalid RFlag. Line " << linenum << endl;
-		//skip();
+		skip();
 	}
 }
 
-/********************************************************************
-*** FUNCTION ProcessValue
-*********************************************************************
-*** DESCRIPTION : Determines an integer value from the last column in SYMBOLS.DAT, if valid the symbol object is added to the tree
-
-********************************************************************/
 
 void ProcessValue()
 {
@@ -223,13 +195,6 @@ void ProcessValue()
 	}
 }
 
-/********************************************************************
-*** FUNCTION ProcessSymbol
-*********************************************************************
-*** DESCRIPTION : checks symbols for illegal characters and lengths, only passes on first 6 chars of valid symbols
-
-********************************************************************/
-
 void ProcessSymbol()
 {
 	string symbolEntry;
@@ -240,7 +205,7 @@ void ProcessSymbol()
 
 	if (!isalpha(ch) && !isdigit(ch)) // Does not start with letter
 	{
-		cerr << "ERROR: Symbol does not start with letter. Line " << linenum << endl;
+		//cerr << "ERROR: Symbol does not start with letter. Line " << linenum << endl;
 	}
 
 	else
@@ -291,14 +256,20 @@ void ProcessSymbol()
 	}
 }
 
-/********************************************************************
-*** FUNCTION SymTable
-*********************************************************************
-*** DESCRIPTION : Entry point for SYMBOLS.DAT and search file, stops and end of file and updates line number.
-Uses traverse function to find matching symbol labels in BST and searchfile
-*** INPUT ARGS : SYMBOLS.DAT file pointer and search file pointer
-********************************************************************/
-void SymTable(FILE* filePtr, FILE* testPtr) 
+void TestSeek(string k, FILE* fp)
+{
+	while (!isspace(ch))
+	{
+		k += ch;
+		ch = fgetc(fp);
+	}
+
+	cout << k << "\t";
+	if (!traverse(root, k))
+		cout << "Not found in symbol table" << endl;
+}
+
+void SymTable(FILE* filePtr, FILE* testPtr)
 {
 	sourceFile = filePtr;
 
@@ -309,43 +280,21 @@ void SymTable(FILE* filePtr, FILE* testPtr)
 	while(ch != EOF)
 	{
 		if (ch == '\n')
-		{
 			linenum++;
-		}
 		
+
 		GetCh();
 		ProcessSymbol();
 	}
 
+	//cout << endl;
+	//cout << "BST Entry: " << endl;
+	//parenthPrint(root);
 	cout << endl;
 	inOrder(root);
 
-	cout << endl << "Entering Search File..." << endl;
+	cout << endl << "Entering Search File..." << endl << endl;;
 	rewind(sourceFile);
 
-	string key;
-	ch = fgetc(testPtr);
-
-	while (ch != EOF)
-	{
-		while (!isspace(ch))
-		{
-			key += ch;
-			ch = fgetc(testPtr);
-		}
-		
-
-		while (isspace(ch))
-		{
-			ch = fgetc(testPtr);
-		}
-
-		if (traverse(root, key))
-		{
-			cout << key << "\t not found in symbol table" << endl;
-		}
-		
-		key = "";
-	}
-	
+	ReadExpr(testPtr, root); // Expression Evaluation entry	
 }

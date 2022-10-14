@@ -3,9 +3,7 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include <iostream>
 #include <string>
-#include <vector>
 
 class Symbol
 {
@@ -14,15 +12,21 @@ public:
 		std::string symbolStr;
 		bool rflag;
 		bool mflag;
+
+		bool nflag;
 		bool iflag;
+		bool xflag;
 
 		Symbol()
 		{
 		value = 0;
 		symbolStr = "";
-		rflag = false; 
+		rflag = false;
 		mflag = false;
-		iflag = true;
+
+		nflag = true; // N bit
+		iflag = true; // I bit
+		xflag = false; // X bit
 		}
 };
 
@@ -35,18 +39,15 @@ struct node
 };
 
 void SymTable(FILE* filePtr, FILE* testPtr);
-void GetCh();
 
 void mFlagSet();
 void rFlagSet();
 void ProcessSymbol();
 void ProcessValue();
 
-
 void insertBST(node*& root, Symbol d);
 void parenthPrint(node* root);
 void inOrder(node* root);
 bool traverse(node* root, std::string key);
-bool testSearch(node* root, std::string key);
 
 #endif
