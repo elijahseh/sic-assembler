@@ -1,7 +1,18 @@
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+*** ASSIGNMENT : Assignment 2 Expression Evaluation 
+*** DUE DATE : 10/14/22 
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains the main Symbol data type for the 
+symbol table, node structer for BST, and function prototypes for SymbolTable.cpp
+********************************************************************/
+
 #pragma once
 
 #ifndef SYMBOLTABLE_H
-#define SYMBOLTABLE_H
+#define SYMBOLTABLE_H		//SymbolTable.h
 
 #include <string>
 

@@ -1,3 +1,17 @@
+/********************************************************************
+*** NAME : ELijah Hogen
+*** CLASS : CSc 354
+*** ASSIGNMENT : Assignment 2 Expression Evaluation
+*** DUE DATE : 10/14/22
+*** INSTRUCTOR : GAMRADT
+*********************************************************************
+*** DESCRIPTION : Populate a symbol table with SYMBOLS.DAT. Read in a
+file via command-line argument and evaluate each expression, showing the 
+resulting value, rflag, N (indirect), I (immediate), and X (indexing) bits 
+derived from each expression. Literal statements are stored on a 
+linked-list based literal table.
+********************************************************************/
+
 #define _CRT_SECURE_NO_DEPRECATE
 #include "SymbolTable.h"
 #include <iostream>

@@ -29,7 +29,7 @@ void skip() // Skips possible whitespace
 	}
 }
 
-void parenthPrint(node* root)
+void parenthPrint(node* root) // Visual aid for BST, debugging purposes
 {
 	if (root != nullptr)
 	{
@@ -43,6 +43,15 @@ void parenthPrint(node* root)
 		}
 	}
 }
+
+
+/********************************************************************
+*** FUNCTION insertBST
+*********************************************************************
+*** DESCRIPTION : Insert symbols into BST, ignores multiply defined symbols
+*** INPUT ARGS : Symbol object populated from SYMBOLS.DAT, BST root node
+
+********************************************************************/
 
 void insertBST(node*& root, Symbol d)
 {
@@ -65,6 +74,15 @@ void insertBST(node*& root, Symbol d)
 	}
 }
 
+
+/********************************************************************
+*** FUNCTION inOrder
+*********************************************************************
+*** DESCRIPTION : Prints an alphebetic ordered traversal of the BST in table format
+*** INPUT ARGS : BST root node
+
+********************************************************************/
+
 void inOrder(node* root)
 {
 	if (root != nullptr)
@@ -81,6 +99,13 @@ void inOrder(node* root)
 	}
 }
 
+/********************************************************************
+*** FUNCTION traverse
+*********************************************************************
+*** DESCRIPTION : search function for BST, prints info on multiply defines symbols and raises MFLAGs
+*** INPUT ARGS : symbol to search tree for (key), BST root node
+
+********************************************************************/
 
 bool mflag = false;
 
@@ -162,6 +187,13 @@ void rFlagSet()
 }
 
 
+/********************************************************************
+*** FUNCTION ProcessValue
+*********************************************************************
+*** DESCRIPTION : Determines an integer value from the last column in SYMBOLS.DAT, if valid the symbol object is added to the tree
+
+********************************************************************/
+
 void ProcessValue()
 {
 	skip();
@@ -194,6 +226,14 @@ void ProcessValue()
 		}
 	}
 }
+
+
+/********************************************************************
+*** FUNCTION ProcessSymbol
+*********************************************************************
+*** DESCRIPTION : checks symbols for illegal characters and lengths, only passes on first 6 chars of valid symbols
+
+********************************************************************/
 
 void ProcessSymbol()
 {
@@ -268,6 +308,14 @@ void TestSeek(string k, FILE* fp)
 	if (!traverse(root, k))
 		cout << "Not found in symbol table" << endl;
 }
+
+/********************************************************************
+*** FUNCTION SymTable
+*********************************************************************
+*** DESCRIPTION : Entry point for SYMBOLS.DAT and search file, stops and end of file and updates line number.
+Uses traverse function to find matching symbol labels in BST and searchfile
+*** INPUT ARGS : SYMBOLS.DAT file pointer and search file pointer
+********************************************************************/
 
 void SymTable(FILE* filePtr, FILE* testPtr)
 {

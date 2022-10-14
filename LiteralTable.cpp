@@ -1,3 +1,13 @@
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+*** ASSIGNMENT : Assignment 2 Expression Evaluation 
+*** DUE DATE : 10/14/22 
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains the linked list for the literal table and 
+basic literal analysis and evaluation
+********************************************************************/
 
 #include <iostream>
 #include <iomanip>
