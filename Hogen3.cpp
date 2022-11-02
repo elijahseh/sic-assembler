@@ -1,20 +1,9 @@
-/********************************************************************
-*** NAME : ELijah Hogen
-*** CLASS : CSc 354
-*** ASSIGNMENT : Assignment 2 Expression Evaluation
-*** DUE DATE : 10/14/22
-*** INSTRUCTOR : GAMRADT
-*********************************************************************
-*** DESCRIPTION : Populate a symbol table with SYMBOLS.DAT. Read in a
-file via command-line argument and evaluate each expression, showing the 
-resulting value, rflag, N (indirect), I (immediate), and X (indexing) bits 
-derived from each expression. Literal statements are stored on a 
-linked-list based literal table.
-********************************************************************/
-
 #define _CRT_SECURE_NO_DEPRECATE
 #include "SymbolTable.h"
+#include "Opcodes.h"
+#include "Pass1.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -24,22 +13,37 @@ int main(int argc, char* argv[])
 {
     if (argc <= 1)
     {
-        cerr << "Search File not specified" << endl;
-        cerr << "Usage: " << argv[0] << " <search file name>" << endl;
+        cerr << "Program File not specified" << endl;
+        cerr << "Usage: " << argv[0] << " <program file name>" << endl;
     }
-
+     
     else
     {
-        FILE* filePtr;
-        FILE* testPtr;
+        Pass1(argv[1]);
+        //FILE* filePtr;
+        //FILE* testPtr;
 
-        filePtr = fopen("SYMBOLS.DAT", "r");
-        testPtr = fopen(argv[1], "r");
+        //filePtr = fopen("SYMBOLS.DAT", "r");
+        //testPtr = fopen(argv[1], "r");
+        //ifstream prog;
+        //prog.open(argv[1]);
 
+        //if (prog.is_open())
+        //{
+            // Read program file
+        //}
+
+        //else
+        //{
+           // cerr << "ERROR: " << argv[1] << " not found." << endl;
+           //e//xit(1);
+        //}
+
+        /*
         if (filePtr == NULL)
         {
             cerr << "Error opening SYMBOLS.DAT" << endl;
-            exit(1);
+            //exit(1);
         }
 
         else
@@ -55,13 +59,13 @@ int main(int argc, char* argv[])
             if (SymbolsCheck == 0)
             {
                 cerr << "SYMBOLS.DAT is empty." << endl;
-                exit(0);
+                //exit(0);
             }
 
             else if (TestCheck == 0)
             {
                 cerr << argv[1] << " is empty." << endl;
-                exit(0);
+                //exit(0);
             }
 
             else //initialize symbol table
@@ -73,13 +77,19 @@ int main(int argc, char* argv[])
                 cout << "LOG: " << argv[1] << " opened." << endl;
 
                 //symbol table enrty
-                SymTable(filePtr, testPtr);
+                //SymTable(filePtr, testPtr);
+
             }
         }
 
         fclose(filePtr);
         fclose(testPtr);
+
+        */
     }
+
+    //optable();
+    //writeInt();
 
     return 0;
 }

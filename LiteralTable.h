@@ -1,15 +1,3 @@
-/******************************************************************** 
-*** NAME : Elijah Hogen
-*** CLASS : CSc 354 *** 
-*** ASSIGNMENT : Assignment 2 Expression Evaluation 
-*** DUE DATE : 10/14/22 
-*** INSTRUCTOR : GAMRADT *** 
-********************************************************************* 
-*** DESCRIPTION : Contains the data type for the Literal Table, 
-basic node structure for the literal table's linked list, and 
-function prototypes for LiteralTable.cpp
-********************************************************************/
-
 #pragma once
 #ifndef LITERALTABLE_H	
 #define LITERALTABLE_H

@@ -1,12 +1,14 @@
 # .DAT files
-.DAT
-.dat 
+*.DAT
+*.dat
 
-# text files
-
-.txt
+# .sic test files
+*.sic
+*.SIC
 
 # output files
-.o 
+*.o
 
-/.vscode
+# system folders
+.vscode
+.git

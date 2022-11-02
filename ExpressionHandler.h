@@ -1,18 +1,7 @@
-/******************************************************************** 
-*** NAME : Elijah Hogen
-*** CLASS : CSc 354 *** 
-*** ASSIGNMENT : Assignment 2 Expression Evaluation 
-*** DUE DATE : 10/14/22 
-*** INSTRUCTOR : GAMRADT *** 
-********************************************************************* 
-*** DESCRIPTION : Contains prototypes for ExpressionHandler.cpp functions,
-in case any functions needed to be used externally in later development 
-********************************************************************/
-
 #pragma once
 
 #ifndef EXPRESSIONHANDLER_H	
-#define EXPRESSIONHANDLER_H         // ExpressionHandler.h
+#define EXPRESSIONHANDLER_H
 
 #include <string>
 #include "SymbolTable.h"

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "SymbolTable.h"
 #include "ExpressionHandler.h"
 
@@ -14,6 +15,15 @@ int linenum;
 node* root = nullptr;
 Symbol entry;
 bool search = false;
+
+void writeSymbol(string s, int v)
+{
+	s.pop_back(); // Remove ':' from symbol name
+
+	entry.symbolStr = s;
+	entry.value = v;
+	insertBST(root, entry);
+}
 
 void GetCh() // Main character grabbing fucntion for SYMBOLS.DAT
 {
@@ -29,7 +39,7 @@ void skip() // Skips possible whitespace
 	}
 }
 
-void parenthPrint(node* root) // Visual aid for BST, debugging purposes
+void parenthPrint(node* root)
 {
 	if (root != nullptr)
 	{
@@ -43,15 +53,6 @@ void parenthPrint(node* root) // Visual aid for BST, debugging purposes
 		}
 	}
 }
-
-
-/********************************************************************
-*** FUNCTION insertBST
-*********************************************************************
-*** DESCRIPTION : Insert symbols into BST, ignores multiply defined symbols
-*** INPUT ARGS : Symbol object populated from SYMBOLS.DAT, BST root node
-
-********************************************************************/
 
 void insertBST(node*& root, Symbol d)
 {
@@ -74,42 +75,38 @@ void insertBST(node*& root, Symbol d)
 	}
 }
 
-
-/********************************************************************
-*** FUNCTION inOrder
-*********************************************************************
-*** DESCRIPTION : Prints an alphebetic ordered traversal of the BST in table format
-*** INPUT ARGS : BST root node
-
-********************************************************************/
-
 void inOrder(node* root)
 {
 	if (root != nullptr)
 	{
 		inOrder(root->left);
 
-		cout << "SYMBOL: " << root->data.symbolStr << "\t"
-			<< "VALUE: " << root->data.value << "\t"
-			<< "RFLAG: " << root->data.rflag << "\t"
-			<< "IFLAG:" << root->data.iflag << "\t"
-			<< "MFLAG: " << root->data.mflag << endl;
+		cout << setw(15) << root->data.symbolStr 
+			<< setw(7) << hex << root->data.value
+			<< setw(7) << root->data.rflag
+			<< setw(7) << root->data.iflag
+			<< setw(7) << root->data.mflag << endl;
 
 		inOrder(root->right);
 	}
 }
 
-/********************************************************************
-*** FUNCTION traverse
-*********************************************************************
-*** DESCRIPTION : search function for BST, prints info on multiply defines symbols and raises MFLAGs
-*** INPUT ARGS : symbol to search tree for (key), BST root node
+void printSymbols()
+{
+	cout << endl << "********* Symbol Table *********" << endl << endl;
+	cout << setw(15) << "SYMBOL"
+		<< setw(7) << "VALUE"
+		<< setw(7) << "RFLAG"
+		<< setw(7) << "IFLAG"
+		<< setw(7) << "MFLAG" << endl;
 
-********************************************************************/
+	inOrder(root);
+}
+
 
 bool mflag = false;
 
-bool traverse(node* root, string key)
+Symbol traverse(node* root, string key)
 {
 
 	if ((root != nullptr))
@@ -119,37 +116,38 @@ bool traverse(node* root, string key)
 		if (root->data.symbolStr == key)
 		{
 
-			root->data.mflag = true;
-			mflag = true;
+			//root->data.mflag = true;
+			//mflag = true;
 
+			
 			cerr << key << "\t Exists in table." << endl;
 		}
 
 		else
 		{
-			mflag = false;
+			//mflag = false;
 		}
 
 		traverse(root->right, key);
-		return mflag;
+		//return mflag;
 	}
 
-	return mflag;
+	return root->data;
 }
 
-bool testMatch = false;
+//bool testMatch = false;
 
-void mFlagSet()
-{
-	string key = entry.symbolStr;
-
-	if (!traverse(root, key))
-	{
-		if(!search)
-			rFlagSet();
-
-	}
-}
+//void mFlagSet()
+//{
+//	string key = entry.symbolStr;
+//
+//	if (!traverse(root, key))
+//	{
+//		if(!search)
+//			rFlagSet();
+//
+//	}
+//}
 
 void rFlagSet()
 {
@@ -187,13 +185,6 @@ void rFlagSet()
 }
 
 
-/********************************************************************
-*** FUNCTION ProcessValue
-*********************************************************************
-*** DESCRIPTION : Determines an integer value from the last column in SYMBOLS.DAT, if valid the symbol object is added to the tree
-
-********************************************************************/
-
 void ProcessValue()
 {
 	skip();
@@ -226,14 +217,6 @@ void ProcessValue()
 		}
 	}
 }
-
-
-/********************************************************************
-*** FUNCTION ProcessSymbol
-*********************************************************************
-*** DESCRIPTION : checks symbols for illegal characters and lengths, only passes on first 6 chars of valid symbols
-
-********************************************************************/
 
 void ProcessSymbol()
 {
@@ -291,31 +274,23 @@ void ProcessSymbol()
 		{
 			symbolEntry = wholeRead.substr(0, 6); // Save first 6 characters only
 			entry.symbolStr = symbolEntry;
-			mFlagSet();
+			//mFlagSet();
 		}
 	}
 }
 
-void TestSeek(string k, FILE* fp)
-{
-	while (!isspace(ch))
-	{
-		k += ch;
-		ch = fgetc(fp);
-	}
-
-	cout << k << "\t";
-	if (!traverse(root, k))
-		cout << "Not found in symbol table" << endl;
-}
-
-/********************************************************************
-*** FUNCTION SymTable
-*********************************************************************
-*** DESCRIPTION : Entry point for SYMBOLS.DAT and search file, stops and end of file and updates line number.
-Uses traverse function to find matching symbol labels in BST and searchfile
-*** INPUT ARGS : SYMBOLS.DAT file pointer and search file pointer
-********************************************************************/
+//void TestSeek(string k, FILE* fp)
+//{
+//	while (!isspace(ch))
+//	{
+//		k += ch;
+//		ch = fgetc(fp);
+//	}
+//
+//	cout << k << "\t";
+//	if (!traverse(root, k))
+//		cout << "Not found in symbol table" << endl;
+//}
 
 void SymTable(FILE* filePtr, FILE* testPtr)
 {

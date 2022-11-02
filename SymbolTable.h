@@ -1,18 +1,7 @@
-/******************************************************************** 
-*** NAME : Elijah Hogen
-*** CLASS : CSc 354 *** 
-*** ASSIGNMENT : Assignment 2 Expression Evaluation 
-*** DUE DATE : 10/14/22 
-*** INSTRUCTOR : GAMRADT *** 
-********************************************************************* 
-*** DESCRIPTION : Contains the main Symbol data type for the 
-symbol table, node structer for BST, and function prototypes for SymbolTable.cpp
-********************************************************************/
-
 #pragma once
 
 #ifndef SYMBOLTABLE_H
-#define SYMBOLTABLE_H		//SymbolTable.h
+#define SYMBOLTABLE_H
 
 #include <string>
 
@@ -51,14 +40,16 @@ struct node
 
 void SymTable(FILE* filePtr, FILE* testPtr);
 
-void mFlagSet();
+//void mFlagSet();
 void rFlagSet();
 void ProcessSymbol();
 void ProcessValue();
+void writeSymbol(std::string s, int v);
 
 void insertBST(node*& root, Symbol d);
 void parenthPrint(node* root);
 void inOrder(node* root);
-bool traverse(node* root, std::string key);
+Symbol traverse(node* root, std::string key);
+void printSymbols();
 
 #endif
