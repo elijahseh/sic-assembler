@@ -1,4 +1,13 @@
-//
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains all routines for evaluating expressions passed 
+from command line. The user passed test file is read here, analyzed, and 
+matches data from the symbol table and feeds literal statements to the literal table
+********************************************************************/
 
 #include <iostream>
 #include <string>

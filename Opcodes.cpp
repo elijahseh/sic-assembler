@@ -1,6 +1,13 @@
-//	Operation code lookup table
-//  Handles SIC/XE Instruction set
-//
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+*** ASSIGNMENT : Assignment 3 Pass 1 
+*** DUE DATE : 11/2/22
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains operation lookup function to match operations found in program files
+with their opcode, format, and attributes. SIC/XE operaions are found in text file Instr.txt located in local path
+********************************************************************/
 
 #include <iostream>
 #include <string>

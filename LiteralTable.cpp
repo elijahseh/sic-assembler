@@ -1,3 +1,12 @@
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains the linked list for the literal table and 
+basic literal analysis and evaluation
+********************************************************************/
 
 #include <iostream>
 #include <iomanip>

@@ -1,3 +1,13 @@
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+*** ASSIGNMENT : Assignment 3 Pass 1 
+*** DUE DATE : 11/2/22
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains function prototypes for Pass 1 location counter
+********************************************************************/
+
 #pragma once
 
 #ifndef PASS1_H

@@ -1,3 +1,13 @@
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains the main Symbol data type for the 
+symbol table, node structer for BST, and function prototypes for SymbolTable.cpp
+********************************************************************/
+
 #pragma once
 
 #ifndef SYMBOLTABLE_H

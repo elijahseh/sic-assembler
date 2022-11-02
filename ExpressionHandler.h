@@ -1,3 +1,13 @@
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Contains prototypes for ExpressionHandler.cpp functions,
+in case any functions needed to be used externally in later development 
+********************************************************************/
+
 #pragma once
 
 #ifndef EXPRESSIONHANDLER_H	

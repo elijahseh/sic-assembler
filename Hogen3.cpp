@@ -1,4 +1,17 @@
-#define _CRT_SECURE_NO_DEPRECATE
+/********************************************************************
+*** NAME : ELijah Hogen
+*** CLASS : CSc 354
+*** ASSIGNMENT : Assignment 3 Pass 1
+*** DUE DATE : 11/2/22
+*** INSTRUCTOR : GAMRADT
+*********************************************************************
+*** DESCRIPTION : Perfom the first pass of SIC/XE assembly. 
+Output is Location Counter values written to a intermediate file.
+This is the main entry file, handles command line args. 
+Input/output files are handled in Pass1.cpp
+********************************************************************/
+
+
 #include "SymbolTable.h"
 #include "Opcodes.h"
 #include "Pass1.h"
@@ -18,79 +31,8 @@ int main(int argc, char* argv[])
     }
      
     else
-    {
         Pass1(argv[1]);
-        //FILE* filePtr;
-        //FILE* testPtr;
-
-        //filePtr = fopen("SYMBOLS.DAT", "r");
-        //testPtr = fopen(argv[1], "r");
-        //ifstream prog;
-        //prog.open(argv[1]);
-
-        //if (prog.is_open())
-        //{
-            // Read program file
-        //}
-
-        //else
-        //{
-           // cerr << "ERROR: " << argv[1] << " not found." << endl;
-           //e//xit(1);
-        //}
-
-        /*
-        if (filePtr == NULL)
-        {
-            cerr << "Error opening SYMBOLS.DAT" << endl;
-            //exit(1);
-        }
-
-        else
-        {
-            int SymbolsCheck;
-            fseek(filePtr, 0, SEEK_END);
-            SymbolsCheck = ftell(filePtr);
-
-            int TestCheck;
-            fseek(testPtr, 0, SEEK_END);
-            TestCheck = ftell(testPtr);
-
-            if (SymbolsCheck == 0)
-            {
-                cerr << "SYMBOLS.DAT is empty." << endl;
-                //exit(0);
-            }
-
-            else if (TestCheck == 0)
-            {
-                cerr << argv[1] << " is empty." << endl;
-                //exit(0);
-            }
-
-            else //initialize symbol table
-            {
-                rewind(filePtr); //start at beginning of file
-                cout << "LOG: SYMBOLS.DAT opened." << endl;
-
-                rewind(testPtr);
-                cout << "LOG: " << argv[1] << " opened." << endl;
-
-                //symbol table enrty
-                //SymTable(filePtr, testPtr);
-
-            }
-        }
-
-        fclose(filePtr);
-        fclose(testPtr);
-
-        */
-    }
-
-    //optable();
-    //writeInt();
-
-    return 0;
+        
+        return 0;
 }
 

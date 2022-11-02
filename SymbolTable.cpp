@@ -135,20 +135,6 @@ Symbol traverse(node* root, string key)
 	return root->data;
 }
 
-//bool testMatch = false;
-
-//void mFlagSet()
-//{
-//	string key = entry.symbolStr;
-//
-//	if (!traverse(root, key))
-//	{
-//		if(!search)
-//			rFlagSet();
-//
-//	}
-//}
-
 void rFlagSet()
 {
 	string flagCheck;
@@ -279,19 +265,6 @@ void ProcessSymbol()
 	}
 }
 
-//void TestSeek(string k, FILE* fp)
-//{
-//	while (!isspace(ch))
-//	{
-//		k += ch;
-//		ch = fgetc(fp);
-//	}
-//
-//	cout << k << "\t";
-//	if (!traverse(root, k))
-//		cout << "Not found in symbol table" << endl;
-//}
-
 void SymTable(FILE* filePtr, FILE* testPtr)
 {
 	sourceFile = filePtr;
@@ -310,9 +283,6 @@ void SymTable(FILE* filePtr, FILE* testPtr)
 		ProcessSymbol();
 	}
 
-	//cout << endl;
-	//cout << "BST Entry: " << endl;
-	//parenthPrint(root);
 	cout << endl;
 	inOrder(root);
 

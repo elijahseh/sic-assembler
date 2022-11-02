@@ -1,5 +1,13 @@
-//
-//
+/******************************************************************** 
+*** NAME : Elijah Hogen
+*** CLASS : CSc 354 *** 
+*** ASSIGNMENT : Assignment 3 Pass 1 
+*** DUE DATE : 11/2/22
+*** INSTRUCTOR : GAMRADT *** 
+********************************************************************* 
+*** DESCRIPTION : Reads SIC/XE program file and maintains location counter Pass 1 output.
+Output is written to an intermediate file named after program name given in the program's file
+********************************************************************/
 
 #include <iostream>
 #include <fstream>
