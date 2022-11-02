@@ -1,4 +1,4 @@
-# SIC Assembler
+## SIC Assembler
 Elijah Hogen
 
 CSC 354 Intro to Systems Programming
