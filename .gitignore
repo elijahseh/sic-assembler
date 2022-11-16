@@ -2,9 +2,11 @@
 *.DAT
 *.dat
 
-# .sic test files
+# test files
 *.sic
 *.SIC
+*.asm
+*.ASM
 
 # output files
 *.o
