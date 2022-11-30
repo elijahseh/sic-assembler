@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <vector>
 #include "SymbolTable.h"
 #include "ExpressionHandler.h"
 
@@ -14,7 +15,9 @@ char lookahead;
 int linenum;
 node* root = nullptr;
 Symbol entry;
+vector<Symbol> stab;
 bool search = false;
+string old;
 
 void writeSymbol(string s, int v)
 {
@@ -73,6 +76,11 @@ void insertBST(node*& root, Symbol d)
 	{
 		insertBST(root->right, d);
 	}
+
+	if (d.symbolStr.compare(old) != 0)
+		stab.push_back(d);
+
+	old = d.symbolStr;
 }
 
 void inOrder(node* root)
@@ -111,28 +119,65 @@ Symbol traverse(node* root, string key)
 
 	if ((root != nullptr))
 	{
-		traverse(root->left, key);
+		if (key < root->data.symbolStr)
+			traverse(root->left, key);
 
-		if (root->data.symbolStr == key)
+		else if (key > root->data.symbolStr)
+			traverse(root->left, key);
+
+		else if (key == root->data.symbolStr)
 		{
-
 			//root->data.mflag = true;
 			//mflag = true;
+			//cerr << key << "\t Exists in table." << endl;
 
-			
-			cerr << key << "\t Exists in table." << endl;
+			cout << "Symbol Found" << endl;
 		}
 
-		else
-		{
-			//mflag = false;
-		}
-
-		traverse(root->right, key);
+		//traverse(root->right, key);
 		//return mflag;
 	}
 
 	return root->data;
+}
+
+Symbol stablookup(string key)
+{
+	Symbol result;
+	for (int i = 0; i < stab.size(); i++) {
+		if (stab.at(i).symbolStr == key)
+			result = stab.at(i);
+	}
+	return result;
+}
+
+//void writetable(string filename)
+//{
+//	ofstream stabt;
+//	in.open(filename);
+//
+//	for (int i = 0; i < stab.size(); i++) {
+//		std::cout << stab.at(i) << ' ';
+//	}
+//
+//	cout << endl << "********* Symbol Table *********" << endl << endl;
+//	cout << setw(15) << "SYMBOL"
+//		<< setw(7) << "VALUE"
+//		<< setw(7) << "RFLAG"
+//		<< setw(7) << "IFLAG"
+//		<< setw(7) << "MFLAG" << endl;
+//}
+
+void based(string key)
+{
+	for (int i = 0; i < stab.size(); i++) {
+		if (stab.at(i).symbolStr == key)
+		{
+			stab.at(i).bflag = 1;
+			stab.at(i).pflag = 0;
+		}
+			
+	}
 }
 
 void rFlagSet()
@@ -283,6 +328,9 @@ void SymTable(FILE* filePtr, FILE* testPtr)
 		ProcessSymbol();
 	}
 
+	//cout << endl;
+	//cout << "BST Entry: " << endl;
+	//parenthPrint(root);
 	cout << endl;
 	inOrder(root);
 

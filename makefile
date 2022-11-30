@@ -1,8 +1,8 @@
-Hogen3:	Hogen3.o SymbolTable.o ExpressionHandler.o LiteralTable.o Opcodes.o Pass1.o
-	g++ Hogen3.o SymbolTable.o ExpressionHandler.o LiteralTable.o Opcodes.o Pass1.o -o Hogen3
+Hogen4:	Hogen4.o SymbolTable.o ExpressionHandler.o LiteralTable.o Opcodes.o Pass1.o Pass2.o
+	g++ Hogen4.o SymbolTable.o ExpressionHandler.cpp LiteralTable.cpp Opcodes.cpp Pass1.cpp Pass2.cpp -o Hogen4
 
-Hogen3.o: Hogen3.cpp
-	g++ -c Hogen3.cpp
+Hogen4.o: Hogen4.cpp
+	g++ -c Hogen4.cpp
 
 SymbolTable.o: SymbolTable.cpp
 	g++ -c SymbolTable.cpp
@@ -19,6 +19,8 @@ Opcodes.o: Opcodes.cpp
 Pass1.o: Pass1.cpp
 	g++ -c Pass1.cpp
 
+Pass2.o: Pass2.cpp
+	g++ -c Pass2.cpp
+
 clean:
-	rm -f *.o $(objects) Hogen3
-	rm -f *.int Hogen3
+	rm *.o *.int *.obj Hogen4

@@ -1,13 +1,5 @@
-/******************************************************************** 
-*** NAME : Elijah Hogen
-*** CLASS : CSc 354 *** 
-*** ASSIGNMENT : Assignment 3 Pass 1 
-*** DUE DATE : 11/2/22
-*** INSTRUCTOR : GAMRADT *** 
-********************************************************************* 
-*** DESCRIPTION : Reads SIC/XE program file and maintains location counter Pass 1 output.
-Output is written to an intermediate file named after program name given in the program's file
-********************************************************************/
+//
+//
 
 #include <iostream>
 #include <fstream>
@@ -16,6 +8,7 @@ Output is written to an intermediate file named after program name given in the 
 #include <sstream>
 #include <vector>
 #include "Pass1.h"
+#include "Pass2.h"
 #include "SymbolTable.h"		// Column 1
 #include "Opcodes.h"			// Column 2
 #include "ExpressionHandler.h"	// Column 3
@@ -30,6 +23,7 @@ ofstream inter; // Output: intermediate file;
 
 // Buffers for: Column 1 (Symbols/Labels)	Column 2 (Operations)	Column 3 (Operands)
 string c1, c2, c3;
+string filename;
 string buffer;
 
 string nextLine()
@@ -51,7 +45,7 @@ void makeInt() // Creates intermediate file with template
 
 	if (isSymbol(c1))
 	{
-		string filename = c1;
+		filename = c1;
 		filename.pop_back(); // Remove : from program name
 		filename += ".int";
 		inter.open(filename, ios::out);
@@ -90,7 +84,7 @@ void makeInt() // Creates intermediate file with template
 void writeInt(int col)
 {
 	if (col == -1) // Line numbers
-		inter << setw(4) << linen;
+		inter << setw(4) << (int)linen;
 
 	else if (col == 0) // Location counter
 		inter << setw(5) << hex << LC; 
@@ -132,6 +126,8 @@ void Pass1(char* progname) // Beginning and end point for Pass 1
 
 	p.close();
 	inter.close();
+
+	Pass2(filename);
 }
 
 bool isSymbol(string s)

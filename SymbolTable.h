@@ -1,13 +1,3 @@
-/******************************************************************** 
-*** NAME : Elijah Hogen
-*** CLASS : CSc 354 *** 
-
-*** INSTRUCTOR : GAMRADT *** 
-********************************************************************* 
-*** DESCRIPTION : Contains the main Symbol data type for the 
-symbol table, node structer for BST, and function prototypes for SymbolTable.cpp
-********************************************************************/
-
 #pragma once
 
 #ifndef SYMBOLTABLE_H
@@ -26,6 +16,8 @@ public:
 		bool nflag;
 		bool iflag;
 		bool xflag;
+		bool bflag;
+		bool pflag;
 
 		Symbol()
 		{
@@ -37,6 +29,8 @@ public:
 		nflag = true; // N bit
 		iflag = true; // I bit
 		xflag = false; // X bit
+		bflag = false; // B bit
+		pflag = true; // P bit
 		}
 };
 
@@ -61,5 +55,7 @@ void parenthPrint(node* root);
 void inOrder(node* root);
 Symbol traverse(node* root, std::string key);
 void printSymbols();
+Symbol stablookup(std::string key);
+void based(std::string key);
 
 #endif
