@@ -1,0 +1,17 @@
+INTERMEDIATE FILE FOR PROG:
+
+LINE   LC          LABEL      OPERATION        OPERAND
+
+   1    0          PROG:          START              0
+   2    0         FIRST:            LDB         #ARRAY
+   3    3                          BASE          ARRAY
+   4    3                           STL         RETADR
+   5    6                         CLEAR              F
+   6    8                           LDT          #3000
+   7    b          LOOP:            STA        ARRAY,X
+   8    e                          ADDR            S,T
+   9   10                           JLT           LOOP
+   a   13                             J        @RETADR
+   b   16         ARRAY:           RESW           1000
+   c  bce        RETADR:           RESW              1
+   d  bd1                           END          FIRST
